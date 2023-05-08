@@ -31,7 +31,7 @@ random_text_string = "New test!!!!"
 with open(PATH_TO_BLOG/"index.html",'w') as f:
     f.write(random_text_string)
 
-print(update_blog())
+update_blog()
 
 #print(PATH_TO_CONTENT)
 
