@@ -4,6 +4,8 @@ from pathlib import Path
 import shutil
 import os
 from bs4 import BeautifulSoup as Soup
+from PIL import Image
+import requests
 
 with open('../key') as f:
     key = f.readline()
@@ -88,8 +90,60 @@ def write_to_index(path_to_new_content):
 #with open(PATH_TO_BLOG/"index.html",'w') as f:
  #   f.write(random_text_string)
 
+##Create blog with openAI
+def create_prompt(title):
+    prompt = """
+    Biography:
 
-path_to_new_content = create_new_blog("Test title","wqdwefew ewfef","images.jpeg")
+    My name is Edward and I am a Python developer.
+
+    Blog
+    Title:{}
+    tags:tech, python,cibersecurity,machine learning
+    Summary: I talk about use python in cibersecurit field
+    Full Text:  
+    """.format(title)
+
+    return prompt
+
+title = "The future of Python and Cibersecurity"
+
+response = openai.Completion.create(
+    engine='text-davinci-003',
+    prompt=create_prompt(title),
+    max_tokens = 1000,
+    temperature = 0.7
+)
+
+blog_content = response['choices'][0]['text']
+
+#Get an image
+def dalle2_prompt(title):
+    promp = f"A render showing {title}"
+    return promp
+
+response_image = openai.Image.create(
+    prompt = dalle2_prompt(title),
+    n=1,
+    size='512x512'
+)
+
+image_url = response_image['data'][0]['url']
+
+def save_image(image_url,file_name): 
+    image_res = requests.get(image_url,stream=True)
+    if image_res.status_code == 200:
+        with open(file_name,'wb') as f:
+            shutil.copyfileobj(image_res.raw,f)
+    else:
+        print('Error Loading Image')
+
+    return image_res.status_code
+
+save_image(image_url,file_name='title2.png')
+#Image.open('title2.png')
+
+path_to_new_content = create_new_blog(title,blog_content,'title2.png')
 print(path_to_new_content)
 #print(PATH_TO_CONTENT)
 
