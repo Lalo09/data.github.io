@@ -7,7 +7,7 @@ with open('../key') as f:
 
 openai.api_key = key
 
-PATH_TO_BLOG_REPO = Path("/mnt/56e0741b-9f34-45d7-be54-f01bc909b45a/Documents/Materiales+cursos/OpenAI+Python/Practices/blog-project/.git")
+PATH_TO_BLOG_REPO = Path("/mnt/56e0741b-9f34-45d7-be54-f01bc909b45a/Documents/Materiales+cursos/OpenAI+Python/Practices/blog-project/")
 
 PATH_TO_BLOG = PATH_TO_BLOG_REPO.parent
 
