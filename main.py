@@ -24,7 +24,7 @@ def update_blog(commit_message='Updates blog'):
     repo.index.commit(commit_message)
     #git push
     origin = repo.remote(name='origin')
-    print(origin.push())
+    origin.push()
 
 random_text_string = "New test!!!!"
 
