@@ -26,12 +26,12 @@ def update_blog(commit_message='Updates blog'):
     origin = repo.remote(name='origin')
     origin.push()
 
-random_text_string = "wdwrdeere ererer edddrer ererewrtew3r  retert  jsjsjsjsjsjs"
+random_text_string = "wdwrdeere ererer edddrer ererewrtew3r  retert  jsjsjswwwjsjsjs"
 
 with open(PATH_TO_BLOG/"index.html",'w') as f:
     f.write(random_text_string)
 
-print(update_blog("Test with python x10000"))
+print(update_blog())
 
 #print(PATH_TO_CONTENT)
 
