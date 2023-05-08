@@ -17,7 +17,7 @@ PATH_TO_CONTENT.mkdir(exist_ok=True,parents=True)
 
 def update_blog(commit_message='Updates blog'):
     repo = Repo(PATH_TO_BLOG_REPO) # Repo location
-
+    print(repo)
     #git add .
     repo.git.add(all=True)
     #git commit -m ""
